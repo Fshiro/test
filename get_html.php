@@ -4,28 +4,41 @@
 
 <?php
 
-$fp = fopen('http://search.yahoo.co.jp/search?p=bunjin&tid=top_ga1_sa&ei=UTF-8&oq=bunjin&pstart=1&fr=top_ga1_sa&b=11', 'r');
+$keyword="bunjin";
 
-$count = 0;
+	for($i = 0; $i < 3; $i++) {
 
-if ($fp){
-    while (!feof($fp)) {
-        $buffer = fgets($fp);
-        print($buffer.'<br>');
-        $count++;
-    }
-}
+		$num=sprintf("%d", $i);
 
-$flag = fclose($fp);
+		if ($i==0){
+			$seekstr="http://search.yahoo.co.jp/search?p=".$keyword."&tid=top_ga1_sa&ei=UTF-8&oq=bunjin&pstart=1&fr=top_ga1_sa&b=1";
+		}else{
+			$seekstr="http://search.yahoo.co.jp/search?p=".$keyword."&tid=top_ga1_sa&ei=UTF-8&oq=bunjin&pstart=1&fr=top_ga1_sa&b=".$num."1";
+		}
 
-print($count.' line<br>');
+		$fp = fopen($seekstr, 'r');
 
-if ($flag){
-    print('Close OK');
-}else{
-    print('Close fail');
-}
+		$count = 0;
 
+		if ($fp){
+		    while (!feof($fp)) {
+		        $buffer = fgets($fp);
+		        print($buffer.'<br>');
+		        $count++;
+		    }
+		}
+
+		$flag = fclose($fp);
+
+		if ($flag){
+		    print('Close OK');
+		}else{
+		    print('Close fail');
+		}
+
+		print("<br> i = ".$i);
+	}
+	
 ?>
 </body>
 </html>
