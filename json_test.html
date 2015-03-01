@@ -1,0 +1,23 @@
+<html>
+<body>
+結果:<input type="text" id="edit_box00_00" value="">
+
+<script type="text/javascript">
+<!--
+// 匿名関数内で実行
+(function (){
+	// エレメントを取得
+	var element = document.getElementById("edit_box00_00");
+
+	// JSON をサポートしているか調べる
+	if(window.JSON){
+		element.value = "対応している";
+	}else{
+		element.value = "未対応";
+	}
+})();
+//-->
+</script>
+
+</body>
+</html>
